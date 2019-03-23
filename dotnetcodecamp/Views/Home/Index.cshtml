@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Web.Models.DTO.CandidateVote>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div>
+    @foreach (var candidate in Model)
+    {
+        <div class="col-lg-3">
+            <img src="@candidate.ProfilePhoto"
+                 class="img-thumbnail" width="150"
+                 height="150" />
+            <p>@candidate.Name</p>
+            <p>@candidate.Bio</p>
+            <p>@candidate.Anime</p>
+            <br />
+
+            <span id="candidate-vote-@candidate.Id">@candidate.Name</span>
+
+            <button id="candidate-@candidate.Id">Vote</button>
+            <br />
+        </div>
+    }
+</div>
