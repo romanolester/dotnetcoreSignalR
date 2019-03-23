@@ -50,6 +50,7 @@ namespace dotnetcodecamp
 
             // Register Services
             services.AddScoped<ICandidateService, CandidateService>();
+            services.AddScoped<IVoteService, VoteService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

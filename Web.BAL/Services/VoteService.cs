@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Web.BLL.Services.Interfaces;
 using Web.DAL.Repositories.Base.Interfaces;
+using Web.Models.Entities;
 
 namespace Web.BLL.Services
 {
@@ -32,6 +33,13 @@ namespace Web.BLL.Services
             {
                 return false;
             }
+
+            _voteRepository.Create(new Vote
+            {
+                CandidateId = candidateId
+            });
+
+            _voteRepository.Complete();
 
             return true;
         }
