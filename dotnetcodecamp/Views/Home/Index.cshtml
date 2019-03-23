@@ -19,8 +19,38 @@
 
             <span id="candidate-vote-@candidate.Id">@candidate.Name</span>
 
-            <button id="candidate-@candidate.Id">Vote</button>
+            <button onclick="vote()" data-id="@candidate.Id" id="candidate-@candidate.Id">Vote</button>
             <br />
         </div>
     }
 </div>
+
+@section Scripts{
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl('/voteHub')
+            .configureLogging(signalR.LogLevel.Informatin)
+            .build();
+
+        connection.start()
+            .then(() => {
+                console.log('You are Connected!')
+            })
+            .catch((e) => {
+                console.log(e.toString());
+            })
+
+        function vote() {
+            const candidateId = event.srcElement.dataset.id;
+            console.log(candidateId);
+
+            connection.invoke("Vote", candidateId)
+                .catch(e => {
+                    console.log(e.toString());
+                });
+        }
+
+    </script>
+
+}

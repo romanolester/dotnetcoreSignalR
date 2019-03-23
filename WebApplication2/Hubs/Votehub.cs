@@ -16,14 +16,20 @@ namespace dotnetcodecamp.Hubs
             _voteService = voteService;
         }
 
-        public async Task Vote(Guid candidateId)
+        public async Task Vote(Guid candidateId, string message)
         {
             var result = _voteService.Vote(candidateId);
 
             if (result)
             {
                 await Clients.All.SendAsync("NewVote", candidateId);
+                await NotifyVoters(message);
             }
+        }
+
+        public async Task NotifyVoters(string message = null)
+        {
+            await Clients.Others.SendAsync(message);
         }
     }
 }

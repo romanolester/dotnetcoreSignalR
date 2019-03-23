@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Home\signalr.js" />
+    <Content Include="Views\Home\signalr.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web.BAL\Web.BLL.csproj" />
+    <ProjectReference Include="..\Web.DAL\Web.DAL.csproj" />
+    <ProjectReference Include="..\Web.Models\Web.Models.csproj" />
+  </ItemGroup>
+
+</Project>

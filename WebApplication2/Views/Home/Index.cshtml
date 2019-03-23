@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Web.Models.DTO.CandidateVote>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div>
+    @foreach (var candidate in Model)
+    {
+        <div class="col-lg-3">
+            <img src="@candidate.ProfilePhoto"
+                 class="img-thumbnail" width="150"
+                 height="150" />
+            <p>@candidate.Name</p>
+            <p>@candidate.Bio</p>
+            <p>@candidate.Anime</p>
+            <br />
+
+            <span id="candidate-vote-@candidate.Id">@candidate.Name</span>
+
+            <button onclick="vote()" data-id="@candidate.Id" id="candidate-@candidate.Id">Vote</button>
+            <br />
+        </div>
+    }
+</div>
+
+@section Scripts{
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder();
+            //.withUrl('/voteHub')
+            //.configureLogging(signalR.LogLevel.Information)
+            //.build();
+
+        console.log(connection);
+
+        //connection.start()
+        //    .then(() => {
+        //        console.log('You are Connected!')
+        //    })
+        //    .catch((e) => {
+        //        console.log(e.toString());
+        //    })
+
+        //function vote() {
+        //    const candidateId = event.srcElement.dataset.id;
+        //    console.log(candidateId);
+
+        //    connection.invoke("Vote", candidateId, "Jez Voted!")
+        //        .catch(e => {
+        //            console.log(e.toString());
+        //        });
+        //}
+
+        //connection.on("NewVote", function (candidateId) {
+        //    const candidateVote = document.getElementById(`candidate-vote-${candidateId}`);
+
+        //    candidateVote.innerHTML = parseInt(candidateVote.innerHTML) + 1;
+        //});
+    </script>
+
+}
